@@ -1,0 +1,21 @@
+{
+    "name": "xaben/facebook-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 integration for Facebook social plugins",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandru Benzari",
+            "email": "alex.benzari@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-0": { "Xaben\\FacebookBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Xaben/FacebookBundle"
+}

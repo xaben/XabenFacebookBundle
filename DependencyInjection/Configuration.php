@@ -31,15 +31,23 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('locale')->defaultValue('en_US')->end()
             ->end();
 
-        $this->addLikeSection($rootNode);
-        $this->addShareSection($rootNode);
-        $this->addCommentSection($rootNode);
+        $this->addLikeButtonSection($rootNode);
+        $this->addShareButtonSection($rootNode);
+        $this->addSendButtonSection($rootNode);
+        $this->addEmbeddedPostsSection($rootNode);
+        $this->addFollowSection($rootNode);
+        $this->addCommentsSection($rootNode);
+        $this->addActivityFeedSection($rootNode);
+        $this->addRecommendationsFeedSection($rootNode);
+        $this->addRecommendationsBarSection($rootNode);
+        $this->addLikeBoxSection($rootNode);
+        $this->addFacepileSection($rootNode);
 
         return $treeBuilder;
     }
 
-    private function addLikeSection(ArrayNodeDefinition $node){
-
+    private function addLikeButtonSection(ArrayNodeDefinition $node)
+    {
         $node->children()
                 ->arrayNode('like')
                     ->addDefaultsIfNotSet()
@@ -57,8 +65,8 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    private function addShareSection(ArrayNodeDefinition $node){
-
+    private function addShareButtonSection(ArrayNodeDefinition $node)
+    {
         $node->children()
             ->arrayNode('share')
             ->addDefaultsIfNotSet()
@@ -70,18 +78,160 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    private function addCommentSection(ArrayNodeDefinition $node){
-
+    private function addSendButtonSection(ArrayNodeDefinition $node)
+    {
         $node->children()
-                ->arrayNode('comments')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('width')->defaultValue('550')->end()
-                        ->enumNode('order_by')->values(array('social', 'reverse_time', 'time'))->defaultValue('social')->end()
-                        ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
-                        ->integerNode('num_posts')->defaultValue(10)->end()
-                    ->end()
-                ->end()
+            ->arrayNode('send')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('width')->defaultValue('450')->end()
+            ->scalarNode('height')->defaultValue('0')->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->booleanNode('kid_directed_site')->defaultValue(false)->end()
+            ->scalarNode('ref')->defaultValue(null)->end()
+            ->end()
+            ->end()
             ->end();
     }
+
+    private function addEmbeddedPostsSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('embedded_posts')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('width')->defaultValue('500')->end() // 350 .. 750
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addFollowSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('follow')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('width')->defaultValue('450')->end()
+            ->scalarNode('height')->defaultValue('80')->end()
+            ->enumNode('layout')->values(array('standard', 'box_count', 'button_count'))->defaultValue('standard')->end()
+            ->booleanNode('show_faces')->defaultValue(false)->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->booleanNode('kid_directed_site')->defaultValue(false)->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addCommentsSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('comments')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('width')->defaultValue('550')->end()
+            ->enumNode('order_by')->values(array('social', 'reverse_time', 'time'))->defaultValue('social')->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->integerNode('num_posts')->defaultValue(10)->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addActivityFeedSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('activity_feed')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('action')->defaultValue('')->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->scalarNode('filter')->defaultValue('')->end()
+            ->booleanNode('header')->defaultValue(true)->end()
+            ->scalarNode('height')->defaultValue('300')->end()
+            ->scalarNode('linktarget')->defaultValue('_blank')->end()
+            ->scalarNode('max_age')->defaultValue('0')->end()  // 0.. 180
+            ->booleanNode('recommendations')->defaultValue(false)->end()
+            ->scalarNode('ref')->defaultValue('')->end()
+            ->scalarNode('site')->defaultValue('')->end()
+            ->scalarNode('width')->defaultValue('300')->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addRecommendationsFeedSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('recommendations_feed')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('action')->defaultValue('')->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->booleanNode('header')->defaultValue(true)->end()
+            ->scalarNode('height')->defaultValue('300')->end()
+            ->scalarNode('linktarget')->defaultValue('_blank')->end()
+            ->scalarNode('max_age')->defaultValue('0')->end()  // 0.. 180
+            ->scalarNode('ref')->defaultValue('')->end()
+            ->scalarNode('site')->defaultValue('')->end()
+            ->scalarNode('width')->defaultValue('300')->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addRecommendationsBarSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('recommendations_bar')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->enumNode('action')->values(array('like', 'recommend'))->defaultValue('like')->end()
+            ->scalarNode('max_age')->defaultValue('0')->end()  // 0.. 180
+            ->scalarNode('num_recommendations')->defaultValue('2')->end()  // 1.. 5
+            ->scalarNode('read_time')->defaultValue('30')->end() //10..30
+            ->scalarNode('ref')->defaultValue('')->end()
+            ->enumNode('side')->values(array('left', 'right'))->defaultValue('left')->end()
+            ->scalarNode('site')->defaultValue('')->end()
+            ->scalarNode('trigger')->defaultValue('')->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addLikeBoxSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('like_box')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->booleanNode('force_wall')->defaultValue(false)->end()
+            ->booleanNode('header')->defaultValue(true)->end()
+            ->scalarNode('height')->defaultValue('556')->end()
+            ->booleanNode('show_border')->defaultValue(true)->end()
+            ->booleanNode('show_faces')->defaultValue(true)->end()
+            ->booleanNode('stream')->defaultValue(true)->end()
+            ->scalarNode('width')->defaultValue('300')->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addFacepileSection(ArrayNodeDefinition $node)
+    {
+        $node->children()
+            ->arrayNode('facepile')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('action')->defaultValue('like')->end()
+            ->enumNode('colorscheme')->values(array('light', 'dark'))->defaultValue('light')->end()
+            ->scalarNode('max_rows')->defaultValue('1')->end()
+            ->enumNode('size')->values(array('small', 'medium', 'large'))->defaultValue('medium')->end()
+            ->scalarNode('width')->defaultValue('300')->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
 }

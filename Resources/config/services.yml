@@ -8,27 +8,4 @@ services:
             - { name: twig.extension }
         arguments:
             container: @service_container
-            options:
-              default_mode: %xaben.facebook.default_mode%
-              app_id: %xaben.facebook.app_id%
-              locale: %xaben.facebook.locale%
-              like:
-                  width: %xaben.facebook.like.width%
-                  layout: %xaben.facebook.like.layout%
-                  action: %xaben.facebook.like.action%
-                  show_faces: %xaben.facebook.like.show_faces%
-                  share: %xaben.facebook.like.share%
-                  colorscheme: %xaben.facebook.like.colorscheme%
-                  kid_directed_site: %xaben.facebook.like.kid_directed_site%
-                  ref: %xaben.facebook.like.ref%
-              share:
-                  width: %xaben.facebook.share.width%
-                  layout: %xaben.facebook.share.layout%
-              comments:
-                  width: %xaben.facebook.comments.width%
-                  order_by: %xaben.facebook.comments.order_by%
-                  num_posts: %xaben.facebook.comments.num_posts%
-                  colorscheme: %xaben.facebook.comments.colorscheme%
-
-
 
