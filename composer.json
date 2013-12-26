@@ -10,12 +10,13 @@
         }
     ],
     "require": {
+        "symfony/symfony": "2.3.*"
     },
     "require-dev": {
     },
     "autoload": {
         "psr-0": { "Xaben\\FacebookBundle": "" }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "target-dir": "Xaben/FacebookBundle"
 }
