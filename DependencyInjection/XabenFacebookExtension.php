@@ -22,7 +22,6 @@ class XabenFacebookExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-
         //pass entire config through container
         $container->setParameter("xaben.facebook.config", $config);
 
