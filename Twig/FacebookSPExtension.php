@@ -34,15 +34,38 @@ class FacebookSPExtension extends \Twig_Extension
         );
     }
 
-    public function SDKInitFunction()
+    public function SDKInitFunction($locale = null)
     {
+        $currentLocale = $this->mapLocale($locale);
+
+        // use default locale if no locale is passed
+        if (is_null($currentLocale)) {
+            $currentLocale = $this->options['locale'];
+        }
+
         $engine = $this->container->get('templating');
 
         return $engine->render('XabenFacebookBundle::init_sdk.html.twig', array(
-                'app_id'=>$this->options['app_id'],
-                'locale'=>$this->options['locale']
+                'app_id' => $this->options['app_id'],
+                'locale' => $currentLocale,
             ));
 
+    }
+
+    private function mapLocale($locale)
+    {
+        $localeMap = [
+            'ro' => 'ro_RO',
+            'en' => 'en_US',
+            'ru' => 'ru_RU',
+            'it' => 'it_IT',
+        ];
+
+        if ($locale && isset($localeMap[$locale])) {
+            return $localeMap[$locale];
+        }
+
+        return null;
     }
 
     public function XFBMLInitFunction()
