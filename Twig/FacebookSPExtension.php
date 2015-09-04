@@ -17,20 +17,20 @@ class FacebookSPExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'xfb_sdkinit'  => new \Twig_Function_Method($this, 'SDKInitFunction', array('is_safe'=>array('html'))),
-            'xfb_xfbmlinit'  => new \Twig_Function_Method($this, 'XFBMLInitFunction', array('is_safe'=>array('html'))),
-            'xfb_like_button'  => new \Twig_Function_Method($this, 'LikeButtonFunction', array('is_safe'=>array('html'))),
-            'xfb_share_button'  => new \Twig_Function_Method($this, 'ShareButtonFunction', array('is_safe'=>array('html'))),
-            'xfb_send_button'  => new \Twig_Function_Method($this, 'SendButtonFunction', array('is_safe'=>array('html'))),
-            'xfb_embedded_posts'  => new \Twig_Function_Method($this, 'EmbeddedPostsFunction', array('is_safe'=>array('html'))),
-            'xfb_follow_button'  => new \Twig_Function_Method($this, 'FollowButtonFunction', array('is_safe'=>array('html'))),
-            'xfb_comments'  => new \Twig_Function_Method($this, 'CommentsFunction', array('is_safe'=>array('html'))),
-            'xfb_activity_feed'  => new \Twig_Function_Method($this, 'ActivityFeedFunction', array('is_safe'=>array('html'))),
-            'xfb_recommendations_feed'  => new \Twig_Function_Method($this, 'RecommendationsFeedFunction', array('is_safe'=>array('html'))),
-            'xfb_recommendations_bar'  => new \Twig_Function_Method($this, 'RecommendationsBarFunction', array('is_safe'=>array('html'))),
-            'xfb_like_box'  => new \Twig_Function_Method($this, 'LikeBoxFunction', array('is_safe'=>array('html'))),
-            'xfb_register'  => new \Twig_Function_Method($this, 'RegisterFunction', array('is_safe'=>array('html'))),
-            'xfb_facepile'  => new \Twig_Function_Method($this, 'FacepileFunction', array('is_safe'=>array('html'))),
+            new Twig_SimpleFunction('xfb_sdkinit', array($this, 'SDKInitFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_xfbmlinit', array($this, 'XFBMLInitFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_like_button', array($this, 'LikeButtonFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_share_button', array($this, 'ShareButtonFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_send_button', array($this, 'SendButtonFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_embedded_posts', array($this, 'EmbeddedPostsFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_follow_button', array($this, 'FollowButtonFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_comments', array($this, 'CommentsFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_activity_feed', array($this, 'ActivityFeedFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_recommendations_feed', array($this, 'RecommendationsFeedFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_recommendations_bar', array($this, 'RecommendationsBarFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_like_box', array($this, 'LikeBoxFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_register', array($this, 'RegisterFunction', array('is_safe'=>array('html')))),
+            new Twig_SimpleFunction('xfb_facepile', array($this, 'FacepileFunction', array('is_safe'=>array('html')))),
         );
     }
 
