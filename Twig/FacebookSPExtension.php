@@ -2,6 +2,7 @@
 namespace Xaben\FacebookBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig_SimpleFunction;
 
 class FacebookSPExtension extends \Twig_Extension
 {
