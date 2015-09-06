@@ -4,26 +4,29 @@ XabenFacebookBundle - Facebook social plugins integration for symfony2
 The ``XabenFacebookBundle`` is a bundle providing twig extensions and exposing general configuration for all the current Facebook social plugins
 
 The following twig extensions are available:
-<pre>
--    xfb_sdkinit
--    xfb_xfbmlinit
--    xfb_like_button
--    xfb_share_button
--    xfb_send_button
--    xfb_embedded_posts
--    xfb_follow_button
--    xfb_comments
--    xfb_activity_feed
--    xfb_recommendations_feed
--    xfb_recommendations_bar
--    xfb_like_box
--    xfb_register
--    xfb_facepile
-</pre>
+
+- xfb_sdkinit
+- xfb_xfbmlinit
+- xfb_like_button
+- xfb_share_button
+- xfb_send_button
+- xfb_embedded_posts
+- xfb_follow_button
+- xfb_comments
+- xfb_activity_feed
+- xfb_recommendations_feed
+- xfb_recommendations_bar
+- xfb_like_box
+- xfb_register
+- xfb_facepile
+
 
 Configuration
 ================================================
-<pre>
+
+```
+#!yaml
+
 xaben_facebook:
     default_mode:         ~ # One of "html5"; "xfbml"; "iframe"; "url"
     app_id:               ~
@@ -106,4 +109,5 @@ xaben_facebook:
         max_rows:             '1'
         size:                 ~ # One of "small"; "medium"; "large"
         width:                '300'
-</pre>
+
+```

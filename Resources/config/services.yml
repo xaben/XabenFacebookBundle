@@ -1,11 +1,9 @@
 parameters:
 
 services:
-
     twig.extension.facebook.sp:
         class: Xaben\FacebookBundle\Twig\FacebookSPExtension
         tags:
             - { name: twig.extension }
         arguments:
             container: @service_container
-
